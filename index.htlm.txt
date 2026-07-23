@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash Delivery - Feel the Speed</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; }
+        .card { max-width: 450px; margin: 0 auto; background: #ffffff; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #0056b3; text-align: center; margin-bottom: 5px; }
+        p.slogan { text-align: center; color: #ff6600; font-weight: bold; margin-top: 0; }
+        label { font-weight: 600; color: #333; display: block; margin-top: 15px; margin-bottom: 5px; }
+        select, input, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-size: 14px; }
+        .btn { width: 100%; background-color: #25D366; color: white; border: none; padding: 15px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 20px; display: block; text-align: center; box-sizing: border-box; }
+        .btn:hover { background-color: #1ebc57; }
+        .footer { text-align: center; font-size: 12px; color: #777; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>DASH DELIVERY</h1>
+    <p class="slogan">⚡ Feel the Speed ⚡</p>
+    
+    <form id="deliveryForm" onsubmit="sendToWhatsApp(event)">
+        <label for="service">Select Service:</label>
+        <select id="service" required>
+            <option value="Food Delivery">🍕 Food Delivery</option>
+            <option value="Grocery Shopping">🛒 Grocery Shopping</option>
+            <option value="Personal Errands">🏃 Personal Errands</option>
+            <option value="Parcel Delivery">📦 Parcel Delivery</option>
+            <option value="Medical Delivery">💊 Medical Delivery</option>
+        </select>
+
+        <label for="pickup">Pickup Address / Location:</label>
+        <input type="text" id="pickup" placeholder="e.g. Restaurant name or street address" required>
+
+        <label for="dropoff">Drop-off Address / Location:</label>
+        <input type="text" id="dropoff" placeholder="e.g. House address or landmark" required>
+
+        <label for="details">Item Details / Special Instructions:</label>
+        <textarea id="details" rows="3" placeholder="What are we picking up or buying for you?"></textarea>
+
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" placeholder="Your Full Name" required>
+
+        <button type="submit" class="btn">🚀 Place Order via WhatsApp</button>
+    </form>
+
+    <div class="footer">
+        Coming to you AmaJahunda Amahle! ❤️
+    </div>
+</div>
+
+<script>
+function sendToWhatsApp(event) {
+    event.preventDefault();
+
+    // Phone number without the '+' sign for clean URL formatting
+    const phone = "263772447516"; 
+    const service = document.getElementById('service').value;
+    const pickup = document.getElementById('pickup').value;
+    const dropoff = document.getElementById('dropoff').value;
+    const details = document.getElementById('details').value || "N/A";
+    const name = document.getElementById('name').value;
+
+    // Clean JavaScript template string syntax
+    const rawMessage = *NEW DASH DELIVERY ORDER* ⚡\n\n +
+                       👤 *Customer:* ${name}\n +
+                       📦 *Service:* ${service}\n +
+                       📍 *Pickup:* ${pickup}\n +
+                       🏁 *Drop-off:* ${dropoff}\n +
+                       📝 *Details:* ${details};
+
+    // Safely encode the entire message
+    const encodedMessage = encodeURIComponent(rawMessage);
+
+    // Use clean wa.me link
+    const whatsappUrl = https://wa.me/${phone}?text=${encodedMessage};
+    
+    // Redirect user to WhatsApp
+    window.location.href = whatsappUrl;
+}
+</script>
+
+</body>
+</html>
